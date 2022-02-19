@@ -28,7 +28,7 @@ const createEthereumContract = () => {
     const getAllTransactions = async () => {
       try {
         if (ethereum) {
-          const transactionsContract = createEthereumContract();
+          const transactionsContract = sendEthereumContract();
   
           const availableTransactions = await transactionsContract.getAllTransactions();
   
@@ -73,7 +73,7 @@ const createEthereumContract = () => {
     const checkIfTransactionsExists = async () => {
       try {
         if (ethereum) {
-          const transactionsContract = createEthereumContract();
+          const transactionsContract = sendEthereumContract();
           const currentTransactionCount = await transactionsContract.getTransactionCount();
   
           window.localStorage.setItem("transactionCount", currentTransactionCount);
@@ -81,7 +81,7 @@ const createEthereumContract = () => {
       } catch (error) {
         console.log(error);
   
-        throw new Error("No ethereum object");
+        // throw new Error("No ethereum object");
       }
     };
   
@@ -92,10 +92,11 @@ const createEthereumContract = () => {
         const accounts = await ethereum.request({ method: "eth_requestAccounts", });
   
         setCurrentAccount(accounts[0]);
+        window.location.reload();
       } catch (error) {
         console.log(error);
   
-        throw new Error("No ethereum object");
+        // throw new Error("No ethereum object");
       }
     };
   
@@ -105,7 +106,7 @@ const createEthereumContract = () => {
         if(!ethereum) return alert("Please install Metamask");
 
           const { addressTo, amount, keyword, message } = formData;
-          const transactionsContract = createEthereumContract();
+          const transactionsContract = sendEthereumContract();
           const parsedAmount = ethers.utils.parseEther(amount);
   
           await ethereum.request({
@@ -137,7 +138,7 @@ const createEthereumContract = () => {
       } catch (error) {
         console.log(error);
   
-        throw new Error("No ethereum object");
+        // throw new Error("No ethereum object");
       }
     };
   

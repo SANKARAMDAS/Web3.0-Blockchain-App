@@ -11,7 +11,7 @@ contract Transactions{
         address sender;
         address receiver;
         uint amount;
-        string messages;
+        string message;
         uint256 timestamp;
         string keyword;
     }
